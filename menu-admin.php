@@ -463,3 +463,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                         <button type="submit" class="btn">Submit</button>
                     </form>
                 </div>
+
+ <button onclick="toggleButton('update_warna')">Perbarui Warna Scooter</button>
+                <div id="update_warna">
+                    <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                        <input type="hidden" name="action_scooter" value="update_scooter">
+                        <input type="hidden" name="update_filter" value="update_warna">
+                        <label for="warna">Masukkan Warna Baru: </label>
+                        <input type="text" name="warna" placeholder="Masukkan Warna Baru" required>
+                        <label for="nomorScooter">Masukkan Nomor Scooter: </label>
+                        <input type="text" name="nomorScooter" placeholder="Masukkan Nomor Scooter" required>
+                        <button type="submit" class="btn">Submit</button>
+                    </form>
+                </div>
