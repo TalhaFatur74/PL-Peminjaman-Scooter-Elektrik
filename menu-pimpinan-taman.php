@@ -176,3 +176,17 @@ if (isset($_POST['keluar_menu_admin']))
                     <button type="submit">Submit</button><br><br>
                 </form>
             </div>
+        
+            <button onclick="toggleButton('PT_filter_scooter')">Melihat Penyewaan Berdasarkan Scooter</button><br>
+            <div id="PT_filter_scooter" class="content-section">
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                    <label for="nomorScooter">Nomor Scooter: </label>
+                    <input type="text" id="nomorScooter" name="nomorScooter" required><br><br>
+                    <label for="tanggalMulai">Tanggal Mulai: </label>
+                    <input type="date" id="tanggalMulai" name="tanggalMulai" required><br><br>
+                    <label for="end_date">Tanggal Akhir: </label>
+                    <input type="date" id="tanggalAkhir" name="tanggalAkhir" required><br><br>
+                    <input type="hidden" name="penyewaan_berdasarkan_scooter">
+                    <button type="submit">Submit</button><br><br>
+                </form>
+            </div>
