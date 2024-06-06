@@ -217,3 +217,74 @@ if (isset($_POST['keluar_menu_admin']))
                     <button type="submit">Kembali Ke Menu Utama</button>
                 </form>
             </div>
+            </div>
+        <div class="main-content">
+        <h1>Data Peminjaman Scooter Elektrik</h1>
+            <?php 
+            if ($_SERVER['REQUEST_METHOD'] == 'POST')
+            {
+            if(isset($_POST['lihat_data_scooter']))
+            {
+            $sql = "SELECT * FROM scooter";
+            $query = mysqli_query($db, $sql);
+
+            // Tampilkan data scooter dalam tabel
+            echo "<table>";
+            echo    "<thead>";
+            echo        "<tr>";
+            echo            "<th>Nomor Scooter</th>";
+            echo            "<th>Warna</th>";
+            echo            "<th>Tarif Per Jam</th>";
+            echo        "</tr>";
+            echo    "</thead>";
+
+            echo    "<tbody>";
+
+            while($scooter = mysqli_fetch_array($query))
+            {
+                echo "<tr>";
+                echo "<td>".$scooter['nomorScooter']."</td>";
+                echo "<td>".$scooter['warna']."</td>";
+                echo "<td>".$scooter['tarifPerJam']."</td>";
+                echo "</tr>";
+            }
+
+            echo    "</tbody>";
+            echo "</table>";
+
+                }
+                else if (isset($_POST['cari_data_scooter']))
+                {
+                    $nomorScooter = $_POST["nomorScooter"];
+            
+                    $sql = "SELECT * FROM scooter WHERE nomorScooter = '$nomorScooter'";
+                    $query = mysqli_query($db, $sql);
+            
+                    if (mysqli_num_rows($query) == 1)
+                    {
+                        echo "<table>";
+                        echo "<thead>";
+                        echo "<tr>";
+                        echo "<th>Nomor Scooter</th>";
+                        echo "<th>Warna</th>";
+                        echo "<th>Tarif Per Jam</th>";
+                        echo "</tr>";
+                        echo "</thead>";
+                        echo "<tbody>";
+            
+                        while($scooter = mysqli_fetch_array($query))
+                        {
+                            echo "<tr>";
+                            echo "<td>".$scooter['nomorScooter']."</td>";
+                            echo "<td>".$scooter['warna']."</td>";
+                            echo "<td>".$scooter['tarifPerJam']."</td>";
+                            echo "</tr>";
+                        }
+                        echo "</tbody>";
+                        echo "</table>";
+                    }
+                    else
+                    {
+                        echo "Data tidak ditemukan";
+                    }
+                }
