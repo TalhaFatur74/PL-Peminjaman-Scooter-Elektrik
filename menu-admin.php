@@ -476,3 +476,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                         <button type="submit" class="btn">Submit</button>
                     </form>
                 </div>
+                <button onclick="toggleButton('update_tarif')">Perbarui Tarif Scooter</button>
+                <div id="update_tarif">
+                    <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                        <input type="hidden" name="action_scooter" value="update_scooter">
+                        <input type="hidden" name="update_filter" value="update_tarif">
+                        <label for="tarifPerJam">Masukkan Tarif Baru: </label>
+                        <input type="number" name="tarifPerJam" placeholder="Masukkan Tarif Baru" required>
+                        <label for="nomorScooter">Masukkan Nomor Scooter: </label>
+                        <input type="text" name="nomorScooter" placeholder="Masukkan Nomor Scooter" required>
+                        <button type="submit" class="btn">Submit</button>
+                    </form>
+                </div>
+                </div>
