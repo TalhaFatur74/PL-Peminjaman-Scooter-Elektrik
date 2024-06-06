@@ -54,3 +54,43 @@ else if (isset($_POST['action_penyewaan_terdaftar']))
         $tampilkanPesanGagal = true;
     }
 }
+else if (isset($_POST['insert_pengembalian']))
+{
+    $nomorKTP = $_POST['nomorKTP'];
+    $nomorScooter = $_POST['nomorScooter'];
+    $waktuAwal = $_POST['waktuAwal'];
+    $waktuAkhir = $_POST['waktuAkhir'];
+    $tarifAwal = $_POST['tarifAwal'];
+
+    $waktuPenyewaan = DateTime::createFromFormat('H:i:s', $waktuAwal);
+    $waktuPengembalian = DateTime::createFromFormat('H:i:s', $waktuAkhir);
+
+    $selisihWaktu = $waktuPenyewaan->diff($waktuPengembalian);
+
+    $totalJam = $selisihWaktu->h;
+    $totalMenit = $selisihWaktu->i;
+    $totalDetik = $selisihWaktu->s;
+
+    $jamLebih = ($totalMenit / 60) + ($totalDetik / 3600);
+
+    if ($jamLebih > 0) 
+    {
+        $totalJam += 1;
+    }
+
+    $totalJamTambahan = intval(max(0, $totalJam - 1));
+
+    $tarifTambahan = $totalJamTambahan * $tarifAwal;
+
+    $sql = "INSERT INTO pengembalian VALUES(UUID(), '$nomorScooter', '$nomorKTP', '$waktuAkhir ', $tarifTambahan)";
+    $query = mysqli_query($db, $sql);
+
+    if($query)
+    {
+        $tampilkanPesanBerhasil = true;
+    }
+    else
+    {
+        $tampilkanPesanGagal = true;
+    }
+}
