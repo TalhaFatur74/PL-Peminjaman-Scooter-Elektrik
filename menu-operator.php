@@ -420,3 +420,32 @@ else if (isset($_POST['insert_pengembalian']))
                     </table>";
                 
             }
+ else if (isset($_POST['lihat_data_pengembalian']))
+            {
+                echo "<table>";
+                echo "<thead>";
+                echo "<tr>";
+                echo "<th>Nomor Pengembalian</th>";
+                echo "<th>Nomor Scooter</th>";
+                echo "<th>Nomor KTP</th>";
+                echo "<th>Waktu Akhir</th>";
+                echo "<th>Tarif Tambahan</th>";
+                echo "</tr>";
+                echo "</thead>";
+                echo "<tbody>";
+
+                $sql = "SELECT * FROM pengembalian";
+                $query = mysqli_query($db, $sql);
+                while($pengembalian = mysqli_fetch_array($query)) {
+                    echo "<tr>";
+                    echo "<td>".$pengembalian['nomorPengembalian']."</td>";
+                    echo "<td>".$pengembalian['nomorScooter']."</td>";
+                    echo "<td>".$pengembalian['nomorKTP']."</td>";
+                    echo "<td>".$pengembalian['waktuAkhir']."</td>";
+                    echo "<td>".$pengembalian['tarifTambahan']."</td>";
+                    echo "</tr>";
+                }
+
+                echo "</tbody>";
+                echo "</table>";
+            }
