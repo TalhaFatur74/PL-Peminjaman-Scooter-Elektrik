@@ -338,3 +338,47 @@ if (isset($_POST['keluar_menu_admin']))
                         echo "<p>Tidak ada transaksi dalam periode ini.</p>";
                     }
                 }
+		else if(isset($_POST['penyewaan_berdasarkan_scooter']))
+                {
+                    $tanggalMulai = $_POST['tanggalMulai'];
+                    $tanggalAkhir = $_POST['tanggalAkhir'];
+                    $nomorScooter = $_POST['nomorScooter'];
+
+                    $sql = "SELECT penyewaan.nomorPenyewaan, scooter.nomorScooter, scooter.warna, scooter.tarifPerJam, penyewaan.tanggalPenyewaan, penyewaan.nomorScooter, penyewaan.waktuMulai
+                            FROM scooter
+                            INNER JOIN penyewaan ON scooter.nomorScooter = penyewaan.nomorScooter
+                            WHERE tanggalPenyewaan BETWEEN '$tanggalMulai' AND '$tanggalAkhir' AND scooter.nomorScooter = '$nomorScooter'";
+								
+                    $query = mysqli_query($db, $sql);
+
+                    if ($query && mysqli_num_rows($query) > 0) 
+                    {
+                        echo "<table border='1'>
+                                <thead>
+                                    <tr>
+                                        <th>Nomor Penyewaan</th>
+                                        <th>Nomor Scooter</th>
+                                        <th>Warna</th>
+                                        <th>Tarif 1 jam Pertama</th>
+                                        <th>Tanggal Penyewaan</th>
+                                        <th>Nomor Scooter</th>
+                                        <th>Waktu Mulai</th>
+                                    </tr>
+                                </thead>
+                                <tbody>";
+                        while($penyewaan = mysqli_fetch_assoc($query)) 
+                        {
+                            echo "<tr>";
+                            echo "<td>".$penyewaan['nomorPenyewaan']."</td>";
+                            echo "<td>".$penyewaan['nomorScooter']."</td>";
+                            echo "<td>".$penyewaan['warna']."</td>";
+                            echo "<td>".$penyewaan['tarifPerJam']."</td>";
+                            echo "<td>".$penyewaan['tanggalPenyewaan']."</td>";
+                            echo "<td>".$penyewaan['nomorScooter']."</td>";
+                            echo "<td>".$penyewaan['waktuMulai']."</td>";
+                            echo "</tr>";
+                        }
+                        echo "</tbody>
+                            </table>";
+                    }
+                }
