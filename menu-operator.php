@@ -449,3 +449,7 @@ else if (isset($_POST['insert_pengembalian']))
                 echo "</tbody>";
                 echo "</table>";
             }
+ ?>
+        </div>
+    </body>
+</html>
