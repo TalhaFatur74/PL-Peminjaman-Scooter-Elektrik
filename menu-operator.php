@@ -215,3 +215,54 @@ else if (isset($_POST['insert_pengembalian']))
             background-color: #2980b9;
         }
         </style>
+        
+        <script>
+        function toggleButton(divID)
+        {
+            var div = document.getElementById(divID)
+
+            if (div.style.display === "none")
+            {
+                div.style.display = "block";
+            }
+            else
+            {
+                div.style.display = "none";
+            }
+        }
+        </script>
+    </head>
+
+    <body>
+        <div class="sidebar">
+            <h2>Menu Operator</h2><br>
+            <button onclick="toggleButton('OP_input_penyewaan')" class="button">Masukkan Data Penyewaan</button><br>
+            <div class="content-section" id="OP_input_penyewaan">
+                <button onclick="toggleButton('penyewa_belum_terdaftar')">Masukkan Data Penyewaan (penyewa belum terdaftar)</button><br><br>
+                <div id="penyewa_belum_terdaftar" class="content-section">
+                    <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                        <input type="hidden" name="action_penyewaan_belum_terdaftar" value="insert_penyewaan_belum_terdaftar"> 
+                        <label for="nomorKTP">Nomor KTP (maks: 16 karakter): </label><br>
+                        <input type="text" name="nomorKTP" placeholder="Masukkan Nomor KTP" required><br><br>
+
+                        <label for="nama">Nama Penyewa: </label><br>
+                        <input type="text" name="nama" placeholder="Masukkan Nama Penyewa" required><br><br>
+
+                        <label for="kelurahan">Kelurahan: </label><br>
+                        <input type="text" name="kelurahan" placeholder="Masukkan Kelurahan" required><br><br>
+
+                        <label for="kecamatan">Kecamatan: </label><br>
+                        <input type="text" name="kecamatan" placeholder="Masukkan Kecamatan" required><br><br>
+
+                        <label for="nomorScooter">Nomor Scooter: </label><br>
+                        <input type="text" name="nomorScooter" placeholder="Masukkan Nomor Scooter" required><br><br>
+
+                        <label for="tanggalPenyewaan">Tanggal Mulai: </label>
+                        <input type="date" name="tanggalPenyewaan" required><br><br>
+
+                        <label for="waktuMulai">Waktu Mulai (00:00:00): </label>
+                        <input type="text" name="waktuMulai"><br><br>
+
+                        <button type="submit" class="btn">Submit</button><br><br>
+                    </form>
+                </div>
