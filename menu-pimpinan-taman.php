@@ -128,3 +128,37 @@ if (isset($_POST['keluar_menu_admin']))
             background-color: #2980b9;
         }
     </style>
+    <script>
+        function toggleButton(divID)
+        {
+            var div = document.getElementById(divID)
+
+            if (div.style.display === "none")
+            {
+                div.style.display = "block";
+            }
+            else
+            {
+                div.style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="sidebar">
+    <h2>Menu Pimpinan Taman</h2>
+    <br>
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                <button type="submit">Melihat Data Scooter</button><br><br>
+                <input type="hidden" name="lihat_data_scooter">
+            </form>
+
+            <button onclick="toggleButton('PT_cari_data')">Mencari Data Scooter</button><br>
+            <div id="PT_cari_data" style="display: none;" class="content-section">
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                    <input type="hidden" name="cari_data_scooter">
+                    <label for="nomorScooter">Nomor Scooter: </label>
+                    <input type="text" name="nomorScooter" placeholder="Masukkan Nomor Scooter" required>
+                    <button type="submit">Submit</button><br><br>
+                </form>
+            </div>
