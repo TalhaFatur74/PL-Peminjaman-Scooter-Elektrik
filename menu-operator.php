@@ -267,7 +267,7 @@ else if (isset($_POST['insert_pengembalian']))
                     </form>
                 </div>
 
-                 <button onclick="toggleButton('penyewa_terdaftar')" class="button">Masukkan Data Penyewaan (penyewa terdaftar)</button><br><br>
+                <button onclick="toggleButton('penyewa_terdaftar')" class="button">Masukkan Data Penyewaan (penyewa terdaftar)</button><br><br>
                 <div id="penyewa_terdaftar" class="content-section">
                     <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                         <input type="hidden" name="action_penyewaan_terdaftar" value="insert_penyewaan_terdaftar"> 
@@ -288,6 +288,45 @@ else if (isset($_POST['insert_pengembalian']))
                 </div> 
             </div>
              <button onclick="toggleButton('insert_pengembalian')" class="button">Masukkan Data Pengembalian</button><br>
+            <div id="insert_pengembalian" class="content-section">
+                <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                    <input type="hidden" name="insert_pengembalian" value="insert_pengembalian"> 
+
+                    <label for="nomorScooter">Nomor Scooter: </label><br>
+                    <input type="text" name="nomorScooter" placeholder="Masukkan Nomor Scooter" required><br><br>
+
+                    <label for="nomorKTP">Nomor KTP (maks: 16 karakter): </label><br>
+                    <input type="text" name="nomorKTP" placeholder="Masukkan Nomor KTP" required><br><br>
+
+                    <label for="waktuAwal">Waktu Penyewaan: </label><br>
+                    <input type="text" name="waktuAwal" placeholder="Masukkan Waktu Penyewaan" required><br><br>
+
+                    <label for="waktuAkhir">Waktu Pengembalian: </label><br>
+                    <input type="text" name="waktuAkhir" placeholder="Masukkan Waktu Pengembalian" required><br><br>
+
+                    <label for="tarifAwal">Tarif untuk 1 Jam Pertama: </label><br>
+                    <input type="text" name="tarifAwal" placeholder="Masukkan Tarif Awal" required><br><br>
+
+                    <button type="submit" class="btn">Submit</button><br><br>
+                </form>
+            </div>
+
+            <div>
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                <button type="submit" class="button">Lihat Data Pengembalian</button><br><br>
+                <input type="hidden" name="lihat_data_pengembalian">
+                </form>
+            </div>
+
+            <div>
+                <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                    <input type="hidden" name="keluar_menu_admin">
+                    <button type="submit" class="button">Kembali ke Menu Utama</button>
+                </form>
+            </div>
+        </div>
+
+        <button onclick="toggleButton('insert_pengembalian')" class="button">Masukkan Data Pengembalian</button><br>
             <div id="insert_pengembalian" class="content-section">
                 <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                     <input type="hidden" name="insert_pengembalian" value="insert_pengembalian"> 
