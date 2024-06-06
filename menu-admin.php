@@ -128,3 +128,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                 $tampilkanPesanGagal = true;
             }
         }
+        else if($action == 'update_scooter')
+        {
+            if (isset($_POST['update_filter']))
+            {
+                $update_filter = $_POST['update_filter'];
+                
+                if ($update_filter == 'update_nomor_scooter')
+                {
+                    $nomorScooterBaru = $_POST['nomor_scooter_baru'];
+                    $nomorScooter = $_POST['nomor_scooter_lama'];
+
+                    $sql = "UPDATE scooter SET nomorScooter = '$nomorScooterBaru' WHERE nomorScooter = '$nomorScooter'"; 
+                    $query = mysqli_query($db, $sql);
+
+                    if($query)
+                    {
+                        $tampilkanPesanBerhasil = true;
+                    }
+                    else
+                    {
+                        $tampilkanPesanGagal = true;
+                    }
+                }
