@@ -162,3 +162,17 @@ if (isset($_POST['keluar_menu_admin']))
                     <button type="submit">Submit</button><br><br>
                 </form>
             </div>
+
+          <button onclick="toggleButton('PT_filter_pengguna')">Melihat Penyewaan Berdasarkan Pengguna</button><br>
+            <div id="PT_filter_pengguna" class="content-section">
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                    <label for="nomorKTP">Nomor KTP: </label>
+                    <input type="text" id="nomorKTP" name="nomorKTP" required><br><br>
+                    <label for="tanggalMulai">Tanggal Mulai: </label>
+                    <input type="date" id="tanggalMulai" name="tanggalMulai" required><br><br>
+                    <label for="end_date">Tanggal Akhir: </label>
+                    <input type="date" id="tanggalAkhir" name="tanggalAkhir" required><br><br>
+                    <input type="hidden" name="penyewaan_berdasarkan_pengguna">
+                    <button type="submit">Submit</button><br><br>
+                </form>
+            </div>
