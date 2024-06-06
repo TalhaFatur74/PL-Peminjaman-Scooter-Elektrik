@@ -337,3 +337,55 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
         button:hover {
             background-color: #2980b9;
         }
+        
+    </style>
+    <script>
+        function toggleButton(divID) {
+            var div = document.getElementById(divID);
+            if (div.style.display === "none") {
+                div.style.display = "block";
+            } else {
+                div.style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Menu Admin</h2>
+        <button onclick="toggleButton('data_pengguna')">Kelola Data Pengguna</button>
+        <div class="content-section" id="data_pengguna">
+            <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                <button type="submit">Lihat Data Pengguna</button>
+                <input type="hidden" name="lihat_data_pengguna">
+            </form>
+
+            <button onclick="toggleButton('admin_input_data')">Masukkan Data Pengguna</button>
+            <div id="admin_input_data">
+                <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                    <input type="hidden" name="action_pengguna" value="insert_pengguna">
+                    <label for="pilihanPeran">Peran: </label>
+                    <select list="pilihanPeran" name="pilihanPeran" placeholder="Pilih Peran" required>
+                        <option value="Admin">Admin</option>
+                        <option value="Operator">Operator</option>
+                        <option value="Pimpinan Taman">Pimpinan Taman</option>
+                    </select>
+                    <label for="kataSandi">Password (maks: 20 karakter): </label>
+                    <input type="password" name="kataSandi" placeholder="Masukkan Password" required>
+                    <button type="submit" class="btn">Submit</button>
+                </form>
+            </div>
+            <button onclick="toggleButton('admin_update_data')">Perbarui Data Pengguna</button>
+            <div id="admin_update_data">
+                <button onclick="toggleButton('update_id')">Perbarui ID</button>
+                <div id="update_id">
+                    <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                        <input type="hidden" name="action_pengguna" value="update_pengguna">
+                        <input type="hidden" name="update_filter" value="update_id_pengguna">
+                        <label for="id_baru">Masukkan ID Baru: </label>
+                        <input type="text" name="id_baru" placeholder="Masukkan ID Baru" required>
+                        <label for="idPengguna">Masukkan ID Lama: </label>
+                        <input type="text" name="idPengguna" placeholder="Masukkan ID Lama" required>
+                        <button type="submit" class="btn">Submit</button>
+                    </form>
+                </div>
