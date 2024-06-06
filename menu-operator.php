@@ -266,3 +266,24 @@ else if (isset($_POST['insert_pengembalian']))
                         <button type="submit" class="btn">Submit</button><br><br>
                     </form>
                 </div>
+
+                 <button onclick="toggleButton('penyewa_terdaftar')" class="button">Masukkan Data Penyewaan (penyewa terdaftar)</button><br><br>
+                <div id="penyewa_terdaftar" class="content-section">
+                    <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                        <input type="hidden" name="action_penyewaan_terdaftar" value="insert_penyewaan_terdaftar"> 
+                        <label for="nomorKTP">Nomor KTP (maks: 16 karakter): </label><br>
+                        <input type="text" name="nomorKTP" placeholder="Masukkan Nomor KTP" required><br><br>
+
+                        <label for="nomorScooter">Nomor Scooter: </label><br>
+                        <input type="text" name="nomorScooter" placeholder="Masukkan Nomor Scooter" required><br><br>
+
+                        <label for="tanggalPenyewaan">Tanggal Mulai: </label>
+                        <input type="date" name="tanggalPenyewaan" required><br><br>
+
+                        <label for="waktuMulai">Waktu Mulai (00:00:00): </label>
+                        <input type="text" name="waktuMulai"><br><br>
+
+                        <button type="submit" class="btn">Submit</button><br><br>
+                    </form>
+                </div> 
+            </div>
