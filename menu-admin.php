@@ -429,3 +429,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                 </form>
             </div>
         </div>
+         <button onclick="toggleButton('data_scooter')">Kelola Data Scooter</button>
+
+        <div class="content-section" id="data_scooter">
+            <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                <button type="submit">Lihat Data Scooter</button>
+                <input type="hidden" name="lihat_data_scooter">
+            </form>
+
+            <button onclick="toggleButton('admin_input_scooter')">Masukkan Data Scooter</button>
+            <div id="admin_input_scooter">
+                <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                    <input type="hidden" name="action_scooter" value="insert_scooter">
+                    <label for="warna">Warna: </label>
+                    <input type="text" name="warna" placeholder="Masukkan Warna Scooter" required>
+                    <label for="tarif">Tarif (per jam): </label>
+                    <input type="number" name="tarif" placeholder="Masukkan Tarif" required>
+                    <button type="submit" class="btn">Submit</button>
+                </form>
+            </div>
