@@ -389,3 +389,43 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                         <button type="submit" class="btn">Submit</button>
                     </form>
                 </div>
+
+                 <button onclick="toggleButton('update_peran')">Perbarui Peran</button>
+                <div id="update_peran">
+                    <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                        <input type="hidden" name="action_pengguna" value="update_pengguna">
+                        <input type="hidden" name="update_filter" value="update_peran">
+                        <label for="pilihanPeran">Peran Baru: </label>
+                        <select list="pilihanPeran" name="pilihanPeran" placeholder="Pilih Peran Baru" required>
+                            <option value="Admin">Admin</option>
+                            <option value="Operator">Operator</option>
+                            <option value="Pimpinan Taman">Pimpinan Taman</option>
+                        </select>
+                        <label for="idPengguna">Masukkan ID Pengguna: </label>
+                        <input type="text" name="idPengguna" placeholder="Masukkan ID Pengguna" required>
+                        <button type="submit" class="btn">Submit</button>
+                    </form>
+                </div>
+                <button onclick="toggleButton('update_password')">Perbarui Password</button>
+                <div id="update_password">
+                    <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                        <input type="hidden" name="action_pengguna" value="update_pengguna">
+                        <input type="hidden" name="update_filter" value="update_password">
+                        <label for="password_baru">Masukkan Password Baru: </label>
+                        <input type="password" name="password_baru" placeholder="Masukkan Password Baru" required>
+                        <label for="idPengguna">Masukkan ID Pengguna: </label>
+                        <input type="text" name="idPengguna" placeholder="Masukkan ID Pengguna" required>
+                        <button type="submit" class="btn">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <button onclick="toggleButton('admin_delete_data')">Hapus Data Pengguna</button>
+            <div id="admin_delete_data">
+                <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                    <input type="hidden" name="action_pengguna" value="delete_pengguna">
+                    <label for="idPengguna">ID Pengguna yang Datanya ingin dihapus: </label>
+                    <input type="text" name="idPengguna" placeholder="Masukkan ID Pengguna" required>
+                    <button type="submit" class="btn">Submit</button>
+                </form>
+            </div>
+        </div>
