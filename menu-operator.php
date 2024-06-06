@@ -364,3 +364,59 @@ else if (isset($_POST['insert_pengembalian']))
                 </form>
             </div>
         </div>
+        <div class="main-content">
+            <h1>Data Peminjaman Scooter Elektrik</h1>
+            <?php
+            if($tampilkanPesanBerhasil == true)
+            {
+                echo "<h1>Inputan berhasil :)</h1>";
+                $tampilkanPesanBerhasil = false;
+            }
+            else if($tampilkanPesanGagal == true)
+            {
+                echo "<h1>Inputan gagal :(</h1>";
+                $tampilkanPesanGagal = false;
+            }
+
+            if(isset($_POST['cari_penyewa']))
+            {
+                $nama = $_POST['nama'];
+                $nomorKTP = $_POST['nomorKTP'];
+
+                $sql = "SELECT DISTINCT(penyewa.nomorKTP), nama, kelurahan, kecamatan, scooter.nomorScooter, warna, tarifPerJam
+                        FROM penyewa
+                        INNER JOIN penyewaan ON penyewa.nomorKTP = penyewaan.nomorKTP
+                        INNER JOIN scooter ON penyewaan.nomorScooter = scooter.nomorScooter
+                        WHERE nama = '$nama' AND penyewa.nomorKTP = '$nomorKTP'";
+                            
+                $query = mysqli_query($db, $sql);
+
+                echo "<table border='1'>
+                        <thead>
+                            <tr>
+                                <th>Nomor KTP</th>
+                                <th>Nama</th>
+                                <th>Kelurahan</th>
+                                <th>Kecamatan</th>
+                                <th>Nomor Scooter</th>
+                                <th>Warna</th>
+                                <th>Tarif Per Jam</th>
+                            </tr>
+                        </thead>
+                        <tbody>";
+                while($penyewaan = mysqli_fetch_assoc($query)) 
+                {
+                    echo "<tr>";
+                    echo "<td>".$penyewaan['nomorKTP']."</td>";
+                    echo "<td>".$penyewaan['nama']."</td>";
+                    echo "<td>".$penyewaan['kelurahan']."</td>";
+                    echo "<td>".$penyewaan['kecamatan']."</td>";
+                    echo "<td>".$penyewaan['nomorScooter']."</td>";
+                    echo "<td>".$penyewaan['warna']."</td>";
+                    echo "<td>".$penyewaan['tarifPerJam']."</td>";
+                    echo "</tr>";
+                }
+                echo "</tbody>
+                    </table>";
+                
+            }
