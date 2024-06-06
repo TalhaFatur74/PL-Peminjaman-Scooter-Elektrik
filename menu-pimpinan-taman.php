@@ -510,3 +510,7 @@ if (isset($_POST['keluar_menu_admin']))
                         </table>";
                 }
             }
+            ?>
+        </div>
+</body>
+</html>
