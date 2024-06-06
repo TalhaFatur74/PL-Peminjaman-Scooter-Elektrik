@@ -288,3 +288,53 @@ if (isset($_POST['keluar_menu_admin']))
                         echo "Data tidak ditemukan";
                     }
                 }
+                else if(isset($_POST['penyewaan_berdasarkan_pengguna']))
+                {
+                    $tanggalMulai = $_POST['tanggalMulai'];
+                    $tanggalAkhir = $_POST['tanggalAkhir'];
+                    $nomorKTP= $_POST['nomorKTP'];
+
+                    $sql = "SELECT penyewaan.nomorPenyewaan, penyewa.nomorKTP, penyewa.nama, penyewa.kelurahan, penyewa.kecamatan, penyewaan.tanggalPenyewaan, penyewaan.nomorScooter, penyewaan.waktuMulai
+                            FROM penyewa
+                            INNER JOIN penyewaan ON penyewa.nomorKTP = penyewaan.nomorKTP
+                            WHERE tanggalPenyewaan BETWEEN '$tanggalMulai' AND '$tanggalAkhir' AND penyewa.nomorKTP = '$nomorKTP'";
+								
+                    $query = mysqli_query($db, $sql);
+
+                    if ($query && mysqli_num_rows($query) > 0) 
+                    {
+                        echo "<table border='1'>
+                                <thead>
+                                    <tr>
+                                        <th>Nomor Penyewaan</th>
+                                        <th>Nomor KTP</th>
+                                        <th>Nama Penyewa</th>
+                                        <th>kelurahan</th>
+                                        <th>kecamatan</th>
+                                        <th>Tanggal Penyewaan</th>
+                                        <th>Nomor Scooter</th>
+                                        <th>Waktu Mulai</th>
+                                    </tr>
+                                </thead>
+                                <tbody>";
+                        while($penyewaan = mysqli_fetch_assoc($query)) 
+                        {
+                            echo "<tr>";
+                            echo "<td>" . $penyewaan['nomorPenyewaan'] . "</td>";
+                            echo "<td>" . $penyewaan['nomorKTP'] . "</td>";
+                            echo "<td>" . $penyewaan['nama'] . "</td>";
+                            echo "<td>" . $penyewaan['kelurahan'] . "</td>";
+                            echo "<td>" . $penyewaan['kecamatan'] . "</td>";
+                            echo "<td>" . $penyewaan['tanggalPenyewaan'] . "</td>";
+                            echo "<td>" . $penyewaan['nomorScooter'] . "</td>";
+                            echo "<td>" . $penyewaan['waktuMulai'] . "</td>";
+                            echo "</tr>";
+                        }
+                        echo "</tbody>
+                            </table>";
+                    } 
+                    else 
+                    {
+                        echo "<p>Tidak ada transaksi dalam periode ini.</p>";
+                    }
+                }
