@@ -382,3 +382,131 @@ if (isset($_POST['keluar_menu_admin']))
                             </table>";
                     }
                 }
+
+	    	else if (isset($_POST['lihat_peringkat_scooter']))
+                {
+                    $sql = "SELECT scooter.nomorScooter, warna, tarifPerJam, COUNT(nomorPenyewaan)
+                            FROM scooter
+                            INNER JOIN penyewaan ON scooter.nomorScooter = penyewaan.nomorScooter
+                            GROUP BY scooter.nomorScooter
+                            ORDER BY COUNT(penyewaan.nomorPenyewaan) DESC";
+                    $query = mysqli_query($db, $sql);
+
+                    echo "<table>
+                                <thead>
+                                    <tr>
+                                        <th>Nomor Scooter</th>
+                                        <th>Warna</th>
+                                        <th>Tarif Per Jam</th>
+                                        <th>Jumlah Penyewaan</th>
+                                    </tr>
+                                </thead>
+                                
+                                <tbody>";
+
+                    while($scooterTerlaris = mysqli_fetch_array($query))
+                    {
+                        echo "<tr>";
+                        echo    "<td>".$scooterTerlaris['nomorScooter']."</td>";
+                        echo    "<td>".$scooterTerlaris['warna']."</td>";
+                        echo    "<td>".$scooterTerlaris['tarifPerJam']."</td>";
+                        echo    "<td>".$scooterTerlaris['COUNT(nomorPenyewaan)']."</td>";
+                        echo "</tr>";
+                    }
+                    echo       "</tbody>
+                        </table>";
+                }
+                else if (isset($_POST['lihat_peringkat_penyewa']))
+                {
+                    $sql = "SELECT penyewa.nomorKTP, nama, kelurahan, kecamatan, COUNT(penyewaan.nomorPenyewaan)
+                            FROM penyewa
+                            INNER JOIN penyewaan ON penyewa.nomorKTP = penyewaan.nomorKTP
+                            GROUP BY penyewa.nomorKTP
+                            ORDER BY COUNT(penyewaan.nomorPenyewaan) DESC";
+                    $query = mysqli_query($db, $sql);
+
+                    echo "<table>
+                                <thead>
+                                    <tr>
+                                        <th>Nomor KTP</th>
+                                        <th>Nama</th>
+                                        <th>Kelurahan</th>
+                                        <th>Kecamatan</th>
+                                        <th>Jumlah Penyewaan</th>
+                                    </tr>
+                                </thead>
+                                
+                                <tbody>";
+
+                    while($penyewa = mysqli_fetch_array($query))
+                    {
+                        echo "<tr>";
+                        echo    "<td>".$penyewa['nomorKTP']."</td>";
+                        echo    "<td>".$penyewa['nama']."</td>";
+                        echo    "<td>".$penyewa['kelurahan']."</td>";
+                        echo    "<td>".$penyewa['kecamatan']."</td>";
+                        echo    "<td>".$penyewa['COUNT(penyewaan.nomorPenyewaan)']."</td>";
+                        echo "</tr>";
+                    }
+                    echo       "</tbody>
+                        </table>";
+                }
+                else if (isset($_POST['lihat_peringkat_kecamatan']))
+                {
+                    $sql = "SELECT kecamatan, COUNT(nomorPenyewaan)
+                            FROM penyewa
+                            INNER JOIN penyewaan ON penyewa.nomorKTP = penyewaan.nomorKTP
+                            GROUP BY kecamatan
+                            ORDER BY COUNT(nomorPenyewaan) DESC";
+                    $query = mysqli_query($db, $sql);
+
+                    echo "<table>
+                                <thead>
+                                    <tr>
+                                        <th>Kecamatan</th>
+                                        <th>Jumlah Penyewaan</th>
+                                    </tr>
+                                </thead>
+                                
+                                <tbody>";
+
+                    while($kecamatan = mysqli_fetch_array($query))
+                    {
+                        echo "<tr>";
+                        echo    "<td>".$kecamatan['kecamatan']."</td>";
+                        echo    "<td>".$kecamatan['COUNT(nomorPenyewaan)']."</td>";
+                        echo "</tr>";
+                    }
+                    echo       "</tbody>
+                        </table>";
+                }
+                else if (isset($_POST['lihat_peringkat_kelurahan']))
+                {
+                    $sql = "SELECT kelurahan, COUNT(nomorPenyewaan)
+                            FROM penyewa
+                            INNER JOIN penyewaan ON penyewa.nomorKTP = penyewaan.nomorKTP
+                            GROUP BY kelurahan
+                            ORDER BY COUNT(nomorPenyewaan) DESC";
+                    $query = mysqli_query($db, $sql);
+
+                    echo "<table>
+                                <thead>
+                                    <tr>
+                                        <th>Kelurahan</th>
+                                        <th>Jumlah Penyewaan</th>
+                                    </tr>
+                                </thead>
+                                
+                                <tbody>";
+
+                    while($kelurahan = mysqli_fetch_array($query))
+                    {
+                        echo "<tr>";
+                        echo    "<td>".$kelurahan['kelurahan']."</td>";
+                        echo    "<td>".$kelurahan['COUNT(nomorPenyewaan)']."</td>";
+                        echo "</tr>";
+                    }
+                    echo       "</tbody>
+                        </table>";
+                }
+            }
