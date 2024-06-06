@@ -488,4 +488,65 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                         <button type="submit" class="btn">Submit</button>
                     </form>
                 </div>
-                </div>
+            </div>
+
+             <button onclick="toggleButton('admin_delete_scooter')">Hapus Data Scooter</button>
+            <div id="admin_delete_scooter">
+                <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                    <input type="hidden" name="action_scooter" value="delete_scooter">
+                    <label for="nomorScooter">Nomor Scooter yang Datanya ingin dihapus: </label>
+                    <input type="text" name="nomorScooter" placeholder="Masukkan Nomor Scooter" required>
+                    <button type="submit" class="btn">Submit</button>
+                </form>
+            </div>
+        </div>
+
+        <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+            <input type="hidden" name="keluar_menu_admin">
+            <button type="submit">Kembali ke Menu Utama</button>
+        </form>
+    </div>
+
+     <div class="main-content">
+        <h1>Data Peminjaman Scooter Elektrik</h1>
+        <?php
+        if($tampilkanPesanBerhasil == true)
+        {
+            echo "<h1>Inputan berhasil :)</h1>";
+            $tampilkanPesanBerhasil = false;
+        }
+        else if($tampilkanPesanGagal == true)
+        {
+            echo "<h1>Inputan gagal :(</h1>";
+            $tampilkanPesanGagal = false;
+        }
+
+        if(isset($_POST['lihat_data_pengguna']))
+        {
+            $sql = "SELECT * FROM pengguna";
+            $query = mysqli_query($db, $sql);
+
+            // Tampilkan data pengguna dalam tabel
+            echo "<table>";
+            echo    "<thead>";
+            echo        "<tr>";
+            echo            "<th>ID</th>";
+            echo            "<th>Peran</th>";
+            echo            "<th>Password</th>";
+            echo        "</tr>";
+            echo    "</thead>";
+            echo    "<tbody>";
+
+            while($pengguna = mysqli_fetch_array($query))
+            {
+                echo "<tr>";
+                echo "<td>".$pengguna['idPengguna']."</td>";
+                echo "<td>".$pengguna['peran']."</td>";
+                echo "<td>".$pengguna['kataSandi']."</td>";
+                echo "</tr>";
+            }
+
+            echo    "</tbody>";
+            echo "</table>";
+        }
+            
