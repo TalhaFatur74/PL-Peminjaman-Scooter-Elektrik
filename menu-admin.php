@@ -187,3 +187,28 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                 }
             }
         }
+          else if($action == 'delete_scooter')
+        {
+            $nomorScooter = $_POST['nomorScooter'];
+
+            $sql = "DELETE FROM scooter WHERE nomorScooter = '$nomorScooter'";
+            $query = mysqli_query($db, $sql);
+
+            if($query)
+            {
+                $tampilkanPesanBerhasil = true;
+            }
+            else
+            {
+                $tampilkanPesanGagal = true;
+            }
+        }
+    }
+
+    if (isset($_POST['keluar_menu_admin']))
+    {
+        header("Location: index.php");
+        exit();
+    }
+    
+}
