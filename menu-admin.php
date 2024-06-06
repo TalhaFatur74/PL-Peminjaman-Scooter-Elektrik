@@ -105,3 +105,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
             }
         }
     }
+
+      #MENU PENGELOLAAN DATA SCOOTER
+    if(isset($_POST['action_scooter']))
+    {
+        $action = $_POST['action_scooter'];
+
+        if ($action == 'insert_scooter')
+        {
+            $warna = $_POST['warna'];
+            $tarifPerJam = intval($_POST['tarif']);
+
+            $sql = "INSERT INTO scooter VALUES(UUID(), '$warna', $tarifPerJam)";
+            $query = mysqli_query($db, $sql);
+
+            if($query)
+            {
+                $tampilkanPesanBerhasil = true;
+            }
+            else
+            {
+                $tampilkanPesanGagal = true;
+            }
+        }
