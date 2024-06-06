@@ -151,3 +151,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                         $tampilkanPesanGagal = true;
                     }
                 }
+ else if ($update_filter == 'update_warna')
+                {
+                    $warna = $_POST['warna'];
+                    $nomorScooter = $_POST['nomorScooter'];
+
+                    $sql = "UPDATE scooter SET warna = '$warna' WHERE nomorScooter = '$nomorScooter'"; 
+                    $query = mysqli_query($db, $sql);
+
+                    if($query)
+                    {
+                        $tampilkanPesanBerhasil = true;
+                    }
+                    else
+                    {
+                        $tampilkanPesanGagal = true;
+                    }
+                }
