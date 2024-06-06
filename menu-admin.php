@@ -448,3 +448,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                     <button type="submit" class="btn">Submit</button>
                 </form>
             </div>
+
+            <button onclick="toggleButton('admin_update_scooter')">Perbarui Data Scooter</button>
+            <div id="admin_update_scooter">
+                <button onclick="toggleButton('update_nomor_scooter')">Perbarui Nomor Scooter</button>
+                <div id="update_nomor_scooter">
+                    <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                        <input type="hidden" name="action_scooter" value="update_scooter">
+                        <input type="hidden" name="update_filter" value="update_nomor_scooter">
+                        <label for="nomor_scooter_baru">Masukkan Nomor Scooter Baru: </label>
+                        <input type="text" name="nomor_scooter_baru" placeholder="Masukkan Nomor Scooter Baru" required>
+                        <label for="nomor_scooter_lama">Masukkan Nomor Scooter Lama: </label>
+                        <input type="text" name="nomor_scooter_lama" placeholder="Masukkan Nomor Scooter Lama" required>
+                        <button type="submit" class="btn">Submit</button>
+                    </form>
+                </div>
