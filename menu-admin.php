@@ -51,3 +51,57 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                         $tampilkanPesanGagal = true;
                     }
                 }
+
+                  else if($update_filter == 'update_peran')
+                {
+                    $peranBaru = $_POST['pilihanPeran'];
+                    $idPengguna = $_POST['idPengguna'];
+
+                    $sql = "UPDATE pengguna SET peran = '$peranBaru' WHERE idPengguna = '$idPengguna'"; 
+                    $query = mysqli_query($db, $sql);
+
+                    if($query)
+                    {
+                        $tampilkanPesanBerhasil = true;
+                    }
+                    else
+                    {
+                        $tampilkanPesanGagal = true;
+                    }
+                }
+                else if($update_filter == 'update_password')
+                {
+                    $passwordBaru = $_POST['password_baru'];
+                    $idPengguna = $_POST['idPengguna'];
+
+                    $sql = "UPDATE pengguna SET kataSandi = '$passwordBaru' WHERE idPengguna = '$idPengguna'"; 
+                    $query = mysqli_query($db, $sql);
+
+                    if($query)
+                    {
+                        $tampilkanPesanBerhasil = true;
+                    }
+                    else
+                    {
+                        $tampilkanPesanGagal = true;
+                    }
+                }
+            }  
+        }
+        else if($action == 'delete_pengguna')
+        {
+            $idPengguna = $_POST['idPengguna'];
+
+            $sql = "DELETE FROM pengguna WHERE idPengguna = '$idPengguna'";
+            $query = mysqli_query($db, $sql);
+
+            if($query)
+            {
+                $tampilkanPesanBerhasil = true;
+            }
+            else
+            {
+                $tampilkanPesanGagal = true;
+            }
+        }
+    }
