@@ -35,3 +35,22 @@ if (isset($_POST['action_penyewaan_belum_terdaftar']))
         $tampilkanPesanGagal = true;
     }
 }
+else if (isset($_POST['action_penyewaan_terdaftar']))
+{
+    $nomorKTP = $_POST['nomorKTP'];
+    $nomorScooter = $_POST['nomorScooter'];
+    $tanggalPenyewaan = $_POST['tanggalPenyewaan'];
+    $waktuMulai = $_POST['waktuMulai'];
+
+    $sql = "INSERT INTO penyewaan VALUES(UUID(), '$nomorScooter', '$nomorKTP', '$tanggalPenyewaan', '$waktuMulai')";
+    $query = mysqli_query($db, $sql);
+
+    if($query)
+    {
+        $tampilkanPesanBerhasil = true;
+    }
+    else
+    {
+        $tampilkanPesanGagal = true;
+    }
+}
