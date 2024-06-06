@@ -190,3 +190,30 @@ if (isset($_POST['keluar_menu_admin']))
                     <button type="submit">Submit</button><br><br>
                 </form>
             </div>
+
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                <button type="submit">Melihat Peringkat Scooter Terlaris</button><br><br>
+                <input type="hidden" name="lihat_peringkat_scooter">
+            </form>
+
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                <button type="submit">Melihat Peringkat Penyewa</button><br><br>
+                <input type="hidden" name="lihat_peringkat_penyewa">
+            </form>
+
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                <button type="submit">Melihat Peringkat Kecamatan</button><br><br>
+                <input type="hidden" name="lihat_peringkat_kecamatan">
+            </form>
+
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                <button type="submit">Melihat Peringkat Kelurahan</button><br><br>
+                <input type="hidden" name="lihat_peringkat_kelurahan">
+            </form>
+
+            <div>
+                <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                    <input type="hidden" name="keluar_menu_admin">
+                    <button type="submit">Kembali Ke Menu Utama</button>
+                </form>
+            </div>
