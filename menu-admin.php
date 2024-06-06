@@ -549,4 +549,37 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
             echo    "</tbody>";
             echo "</table>";
         }
+        if(isset($_POST['lihat_data_scooter']))
+        {
+            $sql = "SELECT * FROM scooter";
+            $query = mysqli_query($db, $sql);
+
+            // Tampilkan data scooter dalam tabel
+            echo "<table>";
+            echo    "<thead>";
+            echo        "<tr>";
+            echo            "<th>Nomor Scooter</th>";
+            echo            "<th>Warna</th>";
+            echo            "<th>Tarif Per Jam</th>";
+            echo        "</tr>";
+            echo    "</thead>";
+
+            echo    "<tbody>";
+
+            while($scooter = mysqli_fetch_array($query))
+            {
+                echo "<tr>";
+                echo "<td>".$scooter['nomorScooter']."</td>";
+                echo "<td>".$scooter['warna']."</td>";
+                echo "<td>".$scooter['tarifPerJam']."</td>";
+                echo "</tr>";
+            }
+
+            echo    "</tbody>";
+            echo "</table>";
+        }    
+        ?>
+    </div>
+</body>
+</html>
             
